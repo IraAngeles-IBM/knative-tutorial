@@ -15,12 +15,20 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: grpc-greeter
-  namespace: default
+  namespace: grpc-pot
 spec:
   template:
     spec:
       containers:
-        - image: docker.io/meteatamel/grpc-greeter:v1
+        image: jp.icr.io/ira-tok/grpcgreeter:v1
           ports:
-          - name: h2c
+            name: h2c
             containerPort: 8080
+          resources: 
+            limits: 
+              cpu: 1 
+              mem: 2Gi
+            requests: 
+              cpu: 1 
+              mem: 2Gi
+
