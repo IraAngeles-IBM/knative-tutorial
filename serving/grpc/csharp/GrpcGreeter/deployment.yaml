@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpcgreeter
+  labels:
+    app: grpcgreeter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpcgreeter
+  template:
+    metadata:
+      labels:
+        app: grpcgreeter
+    spec:
+      containers:
+      - name: h2c
+        image: private.jp.icr.io/ira-tok/grpcgreeter:v1
+        resources: 
+          limits: 
+            cpu: 1
+            memory: 2G
+          requests: 
+            cpu: 1
+            memory: 2G
+        ports:
+        - containerPort: 8080
+
