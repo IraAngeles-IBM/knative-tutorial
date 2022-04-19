@@ -13,7 +13,7 @@
 // limitations under the License.
 syntax = "proto3";
 
-option csharp_namespace = "GrpcGreeter";
+option csharp_namespace = "GrpcGreeterClient";
 
 package Greet;
 
