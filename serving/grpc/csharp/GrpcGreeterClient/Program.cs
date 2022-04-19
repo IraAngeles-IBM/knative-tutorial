@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 using System;
-// using System.Object;
+using System.Object;
 using System.Net.Http;
 using System.Threading.Tasks;
 using GrpcGreeterClient;
@@ -29,9 +29,11 @@ namespace GrpcGreeterClient
                 true);
             var httpClient = new HttpClient();
             // The port number(50051) must match the port of the gRPC server.
-            httpClient.BaseAddress = new Uri("http://application-64.myum6f5wtpf.svc.cluster.local:50051");
+            // httpClient.BaseAddress = new Uri("http://application-64.myum6f5wtpf.svc.cluster.local:50051");
             //httpClient.BaseAddress = new Uri("http://grpc-greeter.default.35.205.12.104.nip.io");
-            var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+            // var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+            var channel = GrpcChannel.ForAddress("http://application-64.myum6f5wtpf.svc.cluster.local:50051");
+            var client =  new CreditRatingCheck.CreditRatingCheckClient(channel);
             var reply = await client.SayHelloAsync(
                               new HelloRequest { Name = "GreeterClient" });
             Console.WriteLine("Greeting: " + reply.Message);
